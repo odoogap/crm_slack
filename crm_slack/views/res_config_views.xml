@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <record id="view_slack_config_settings" model="ir.ui.view">
-            <field name="name">slack settings</field>
-            <field name="model">sale.config.settings</field>
-            <field name="inherit_id" ref="sales_team.view_sale_config_settings"/>
-            <field name="arch" type="xml">
-                <div id="main" position="inside">
-                    <group string="Slack" name="config_slack">
-                        <label for="module_crm_slack" string="Slack integration"/>
-                        <div>
-                            <field name="module_crm_slack" class="oe_inline"/>
-                            <label for="module_crm_slack" invisible="1"/>
+    <record id="view_slack_config_settings" model="ir.ui.view">
+        <field name="name">slack settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']" position="inside">
+                <h2>Slack integration</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-md-6 col-xs-12 o_setting_box" id="slack_api_module">
+                        <div class="o_setting_left_pane">
+                            <field name="module_crm_slack" readonly="1"/>
                         </div>
-
-                         <label for="slack_api_key" string="Slack API Key"/>
-                            <div name="slack_api_key">
-                                <div>
-                                    Follow <a href="https://api.slack.com/web#authentication">the instructions</a> to create your key.
-                                </div>
-                                <div>
-                                    <label for="slack_api_key" string="API Key"/>
+                        <div class="o_setting_right_pane">
+                            <label string="Slack Integration" for="slack_api_key"/>
+                            <span class="fa fa-lg fa-building-o"/>
+                            <div class="text-muted">
+                            Slack api key found at https://api.slack.com/web#authentication
+                            </div>
+                            <div class="content-group" attrs="{'invisible': [('module_crm_slack','=',False)]}">
+                                <div class="mt16" >
+                                    Slack API Key:
                                     <field name="slack_api_key" class="oe_inline"/>
                                 </div>
+                                <div class="mt16" >
+                                    Slack Target Channel
+                                    <field name="slack_channel" class="oe_inline"/>
+                                </div>
                             </div>
-
-                    </group>
+                        </div>
+                    </div>
                 </div>
-            </field>
-        </record>
-
+            </xpath>
+        </field>
+    </record>
 </odoo>

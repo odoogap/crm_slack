@@ -10,8 +10,16 @@ class CrmLead(models.Model):
     @api.model
     def create(self, vals):
         res = super(CrmLead, self).create(vals)
+        medium_id = vals.get('medium_id', False)
+        if not medium_id:
+            return res
+        
+        if medium_id != self.env.ref('utm.utm_medium_website').id:
+            return res
+
         channel = self.env['ir.config_parameter'].\
             sudo().get_param('slack.sales_channel', "#general")
+
         # found at https://api.slack.com/web#authentication
         api_token = self.env['ir.config_parameter'].\
             sudo().get_param('slack.api_token')
@@ -30,6 +38,6 @@ class CrmLead(models.Model):
         sc.api_call("api.test")
         sc.api_call(
             "chat.postMessage", channel=channel, text=message,
-            username='pybot', icon_emoji=':robot_face:'
+            username='CRM', icon_emoji=':robot_face:'
         )
         return {}

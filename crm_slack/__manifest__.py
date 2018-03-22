@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Slack CRM integration',
-    'version': '10.0',
+    'version': '11.0',
     'author': 'OdooGAP',
     'summary': 'Slack CRM integration',
     'description': """
@@ -26,7 +26,7 @@ slack.api_token --> the slack api token
 
     """,
     'website': 'http://www.odoogap.com',
-    'depends': ['crm'],
+    'depends': ['crm', 'sale'],
     'category': 'Communication',
     'data': [
         'data/slack_data.xml',
