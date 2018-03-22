@@ -16,9 +16,9 @@ pip3 install -r requirements.txt
 
 ## Configuration
 
-In Sales >> Settings find (Slack integration) or
+In Sales >> Settings find (Slack integration)
 
-ir.config_parameter
+![Sales module settings](https://raw.githubusercontent.com/odoogap/crm_slack/11.0/crm_slack/static/img/slack_settings.png)
 
 In Settings > Technical > Parameters > System Parameters
 
