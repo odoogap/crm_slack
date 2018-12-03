@@ -13,9 +13,9 @@ class SaleConfiguration(models.TransientModel):
     @api.model
     def set_values(self):
         self.env['ir.config_parameter'].set_param(
-            'slack_api_key', (self.slack_api_key or '').strip(), groups=['base.group_system'])
+            'slack_api_key', (self.slack_api_key or '').strip())
         self.env['ir.config_parameter'].set_param(
-            'sales_channel', (self.slack_channel or '').strip(), groups=['base.group_system'])
+            'sales_channel', (self.slack_channel or '').strip())
 
     @api.model
     def get_values(self):
